@@ -1,54 +1,49 @@
-import { lazy, Suspense } from 'react';
-import { Switch, Route } from 'react-router-dom';
-import AppBar from './components/AppBar/AppBar';
-import Container from './components/Container/Container';
-// import HomeView from './views/HomeView';
-// import AuthorsView from './views/AuthorsView';
-// import BooksView from './views/BooksView';
-// import BookDetailsView from './views/BookDetailsView';
-// import NotFoundView from './views/NotFoundView';
-// import TableView from './views/TableView';
+import { lazy, Suspense } from "react";
+import { Switch, Route } from "react-router-dom";
+import Loader from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import AppBar from "./components/AppBar/AppBar";
+import Container from "./components/Container/Container";
 
 const HomeView = lazy(() =>
-  import('./views/HomeView.js' /* webpackChunkName: "home-view" */),
+  import("./views/HomeView" /* webpackChunkName: "home" */)
 );
-const AuthorsView = lazy(() =>
-  import('./views/AuthorsView.js' /* webpackChunkName: "authors-view" */),
+const MovieView = lazy(() =>
+  import("./views/MovieView" /* webpackChunkName: "movie" */)
 );
-const BooksView = lazy(() => import('./views/BooksView.js'));
-const BookDetailsView = lazy(() => import('./views/BookDetailsView.js'));
-const NotFoundView = lazy(() => import('./views/NotFoundView.js'));
-const TableView = lazy(() => import('./views/TableView.js'));
+const MovDetailsView = lazy(() =>
+  import("./views/MovDetailsView.js" /* webpackChunkName: "movie-details" */)
+);
 
-export default function App() {
+export function App() {
   return (
     <Container>
       <AppBar />
-
-      <Suspense fallback={<h1>ЗАГРУЖАЕМ МАРШРУТ...</h1>}>
+      <hr />
+      <Suspense
+        fallback={
+          <div>
+            <Loader
+              type="MutatingDots"
+              color="#00BFFF"
+              height={80}
+              width={80}
+              timeout={3000}
+            />
+          </div>
+        }
+      >
         <Switch>
           <Route path="/" exact>
             <HomeView />
           </Route>
 
-          <Route path="/authors">
-            <AuthorsView />
+          <Route path="/movies" exact>
+            <MovieView />
           </Route>
 
-          <Route path="/books" exact>
-            <BooksView />
-          </Route>
-
-          <Route path="/books/:bookId">
-            <BookDetailsView />
-          </Route>
-
-          <Route path="/table">
-            <TableView />
-          </Route>
-
-          <Route>
-            <NotFoundView />
+          <Route path="/movies/:movieId">
+            <MovDetailsView />
           </Route>
         </Switch>
       </Suspense>
