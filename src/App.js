@@ -11,7 +11,7 @@ const HomeView = lazy(() =>
 const MovieView = lazy(() =>
   import("./views/MovieView" /* webpackChunkName: "movie" */)
 );
-const MovDetailsView = lazy(() =>
+const MovieDetailsView = lazy(() =>
   import("./views/MovDetailsView.js" /* webpackChunkName: "movie-details" */)
 );
 
@@ -44,7 +44,7 @@ export function App() {
           </Route>
 
           <Route path="/movies/:movieId">
-            <MovDetailsView />
+            <MovieDetailsView />
           </Route>
         </Switch>
       </Suspense>

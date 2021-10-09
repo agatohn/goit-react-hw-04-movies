@@ -13,13 +13,14 @@ import {
 } from "react-router-dom";
 import * as api from "../services/api";
 import styles from "./Styles.module.css";
+import PageHeading from "../components/PageHeading/PageHeading";
 
 const Cast = lazy(() => import("./CastView" /* webpackChunkName: "cast" */));
 const Reviews = lazy(() =>
   import("./ReviewsView" /* webpackChunkName: "reviews" */)
 );
 
-export default function MovDetailsView() {
+export default function MovieDetailsView() {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState([]);
   const history = useHistory();
@@ -34,6 +35,7 @@ export default function MovDetailsView() {
 
   return (
     <>
+      <PageHeading text={movieDetails.title} />
       <Link
         type="button"
         to={prevPage ? prevPage : "/movies"}
@@ -132,10 +134,10 @@ export default function MovDetailsView() {
       >
         <Switch>
           <Route path="/movies/:movieId/cast">
-            <Cast>{movieDetails && <Cast movieId={movieId} />}</Cast>
+            {movieDetails && <Cast movieId={movieId} />}
           </Route>
           <Route path="/movies/:movieId/reviews">
-            <Reviews movieId={movieId} />
+            {movieDetails && <Reviews movieId={movieId} />}
           </Route>
         </Switch>
       </Suspense>

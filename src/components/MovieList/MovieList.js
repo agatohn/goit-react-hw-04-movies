@@ -28,7 +28,7 @@ export function MovieList({ movies }) {
                   alt={movie.title}
                   className={styles.movieImg}
                 />
-                <h3 className={styles.movieTitle}>{movie.title}</h3>
+                <p className={styles.movieTitle}>{movie.title}</p>
               </Link>
             </li>
           );
