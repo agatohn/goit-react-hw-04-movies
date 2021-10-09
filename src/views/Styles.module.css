@@ -1,0 +1,60 @@
+.movieDetailsPage {
+  display: flex;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  border: 1px solid grey;
+  border-radius: 15px;
+}
+
+.movieDescription {
+  display: inline-block;
+}
+
+.list {
+  list-style: none;
+}
+
+.title {
+  text-align: start;
+  font-size: 34px;
+  margin: 20px 10px;
+}
+.text {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 20px 10px;
+}
+
+.btn {
+  margin: auto;
+  background: blue;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  border: solid 1px red;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: green;
+  color: white;
+  border: solid 1px red;
+}
+
+.actorsList {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.actorCard {
+  margin: 10px;
+  width: 120px;
+  min-height: 200px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 10px;
+}

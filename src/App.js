@@ -24,10 +24,11 @@ export function App() {
         fallback={
           <div>
             <Loader
-              type="MutatingDots"
+              className="Loader"
+              type="ThreeDots"
               color="#00BFFF"
-              height={80}
-              width={80}
+              height={20}
+              width={100}
               timeout={3000}
             />
           </div>

@@ -4,7 +4,7 @@ import * as api from "../services/api";
 import PageHeading from "../components/PageHeading/PageHeading";
 import { MovieList } from "../components/MovieList/MovieList";
 
-export default function HomeView() {
+function HomeView() {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -20,3 +20,5 @@ export default function HomeView() {
     </>
   );
 }
+
+export default HomeView;

@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styles from "./MovieList.module.css";
 
 export function MovieList({ movies }) {
+  const location = useLocation();
   return (
     <div>
       <ul className={styles.movieList}>
@@ -12,10 +13,18 @@ export function MovieList({ movies }) {
               <Link
                 to={{
                   pathname: `/movies/${movie.id}`,
+                  state: {
+                    url: location.pathname,
+                    query: location.search,
+                  },
                 }}
               >
                 <img
-                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  src={
+                    movie.poster_path
+                      ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+                      : `https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg`
+                  }
                   alt={movie.title}
                   className={styles.movieImg}
                 />
