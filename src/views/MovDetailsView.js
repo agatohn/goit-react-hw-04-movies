@@ -23,14 +23,18 @@ const Reviews = lazy(() =>
 export default function MovieDetailsView() {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState([]);
-  const history = useHistory();
-  const { state } = history.location;
-  const prevPage = `${state.url}${state.query}`;
+  // const history = useHistory();
+  const location = useLocation();
+  const { state } = location;
 
   useEffect(() => {
-    api.fetchMovieById(movieId).then((movie) => {
-      setMovieDetails(movie);
-    });
+    movieId
+      ? api.fetchMovieById(movieId).then((movie) => {
+          setMovieDetails(movie);
+        })
+      : api.fetchMovieById(state.id).then((movie) => {
+          setMovieDetails(movie);
+        });
   }, [movieId]);
 
   return (
@@ -38,7 +42,7 @@ export default function MovieDetailsView() {
       <PageHeading text={movieDetails.title} />
       <Link
         type="button"
-        to={prevPage ? prevPage : "/movies"}
+        to={state ? `${state.url}${state.query}` : "/"}
         className={styles.btn}
       >
         Back
@@ -91,10 +95,6 @@ export default function MovieDetailsView() {
             <NavLink
               to={{
                 pathname: `/movies/${movieId}/cast`,
-                state: {
-                  url: state.url,
-                  query: state.query,
-                },
               }}
               activeClassName={styles.activeLink}
             >
@@ -105,10 +105,6 @@ export default function MovieDetailsView() {
             <NavLink
               to={{
                 pathname: `/movies/${movieId}/reviews`,
-                state: {
-                  url: state.url,
-                  query: state.query,
-                },
               }}
               activeClassName={styles.activeLink}
             >

@@ -12,8 +12,7 @@ function MovieView() {
   const [error, setError] = useState("");
   const history = useHistory();
   const location = useLocation();
-  const savedQuery =
-    new URLSearchParams(location.search).get("savedQuery") ?? "";
+  const savedQuery = new URLSearchParams(location.search).get("query") ?? "";
 
   useEffect(() => {
     if (!savedQuery) {
@@ -39,7 +38,7 @@ function MovieView() {
     setError("");
     history.push({
       ...location,
-      search: `savedQuery=${query}`,
+      search: `query=${query}`,
     });
 
     api.fetchSearchQuery(query).then((movies) => {
