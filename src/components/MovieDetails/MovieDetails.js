@@ -15,7 +15,6 @@ export function MovieDetails({ movieDetails }) {
         width="300"
         height="250"
       />
-
       <ul className={styles.list}>
         <li>
           <h2 className={styles.title}>{movieDetails.title}</h2>

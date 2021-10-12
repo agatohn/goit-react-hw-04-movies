@@ -15,6 +15,7 @@ import * as api from "../services/api";
 import styles from "./Styles.module.css";
 import PageHeading from "../components/PageHeading/PageHeading";
 import { MovieDetails } from "../components/MovieDetails/MovieDetails";
+import DetailsNavigation from "../components/DetailsNavigation/DetailsNavigation";
 
 const Cast = lazy(() =>
   import("../components/Cast/Cast" /* webpackChunkName: "cast" */)
@@ -51,72 +52,7 @@ export default function MovieDetailsView() {
         Back
       </Link>
       <MovieDetails movieDetails={movieDetails} />
-      {/* <div className={styles.movieDetailsPage}>
-        <img
-          src={
-            movieDetails.poster_path
-              ? `https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`
-              : `https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg`
-          }
-          alt={movieDetails.title}
-          width="300"
-          height="250"
-        />
-
-        <ul className={styles.list}>
-          <li>
-            <h2 className={styles.title}>{movieDetails.title}</h2>
-          </li>
-          <li>
-            <span
-              className={styles.text}
-            >{`Release date: ${movieDetails.release_date}`}</span>
-          </li>
-          <li>
-            <span className={styles.text}>{`Rating: ${
-              movieDetails.vote_average * 10
-            }%`}</span>
-          </li>
-          <li>
-            <span className={styles.text}>{`Genre: ${
-              movieDetails.genres
-                ? movieDetails.genres.map((genre) => genre.name).join(", ")
-                : "No genre"
-            }`}</span>
-          </li>
-          <li>
-            <span
-              className={styles.text}
-            >{`Overview: ${movieDetails.overview}`}</span>
-          </li>
-        </ul>
-      </div> */}
-
-      {movieDetails && (
-        <ul>
-          <li>
-            <NavLink
-              to={{
-                pathname: `/movies/${movieId}/cast`,
-              }}
-              activeClassName={styles.activeLink}
-            >
-              Cast
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to={{
-                pathname: `/movies/${movieId}/reviews`,
-              }}
-              activeClassName={styles.activeLink}
-            >
-              Reviews
-            </NavLink>
-          </li>
-        </ul>
-      )}
-
+      <DetailsNavigation movieId={movieId} />
       <Suspense
         fallback={
           <div>
