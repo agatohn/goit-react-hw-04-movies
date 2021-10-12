@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import AppBar from "./components/AppBar/AppBar";
@@ -46,6 +46,7 @@ export function App() {
           <Route path="/movies/:movieId">
             <MovieDetailsView />
           </Route>
+          <Redirect to="/" />
         </Switch>
       </Suspense>
     </Container>

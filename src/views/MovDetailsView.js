@@ -6,10 +6,8 @@ import {
   useParams,
   Switch,
   Route,
-  NavLink,
   useHistory,
   useLocation,
-  Link,
 } from "react-router-dom";
 import * as api from "../services/api";
 import styles from "./Styles.module.css";
@@ -27,9 +25,8 @@ const Reviews = lazy(() =>
 export default function MovieDetailsView() {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState({});
-  // const history = useHistory();
+  const history = useHistory();
   const location = useLocation();
-  const { state } = location;
 
   useEffect(() => {
     movieId
@@ -41,16 +38,16 @@ export default function MovieDetailsView() {
         });
   }, [movieId]);
 
+  const goBack = () => {
+    history.push(location?.state?.from ?? "/");
+  };
+
   return (
     <>
       <PageHeading text={movieDetails.title} />
-      <Link
-        type="button"
-        to={state ? `${state.url}${state.query}` : "/"}
-        className={styles.btn}
-      >
-        Back
-      </Link>
+      <button className={styles.btn} type="button" onClick={goBack}>
+        Go back
+      </button>
       <MovieDetails movieDetails={movieDetails} />
       <DetailsNavigation movieId={movieId} />
       <Suspense
@@ -69,10 +66,10 @@ export default function MovieDetailsView() {
       >
         <Switch>
           <Route path="/movies/:movieId/cast">
-            {movieDetails && <Cast movieId={movieId} />}
+            <Cast movieId={movieId} />
           </Route>
           <Route path="/movies/:movieId/reviews">
-            {movieDetails && <Reviews movieId={movieId} />}
+            <Reviews movieId={movieId} />
           </Route>
         </Switch>
       </Suspense>

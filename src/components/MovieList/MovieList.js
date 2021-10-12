@@ -14,8 +14,7 @@ export function MovieList({ movies }) {
                 to={{
                   pathname: `/movies/${movie.id}`,
                   state: {
-                    url: location.pathname,
-                    query: location.search,
+                    from: location,
                   },
                 }}
               >
