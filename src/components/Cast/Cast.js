@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import * as api from "../services/api";
-import styles from "./Styles.module.css";
+import * as api from "../../services/api";
+import styles from "../../views/Styles.module.css";
 
 export default function Cast() {
   const { movieId } = useParams();

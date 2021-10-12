@@ -14,15 +14,18 @@ import {
 import * as api from "../services/api";
 import styles from "./Styles.module.css";
 import PageHeading from "../components/PageHeading/PageHeading";
+import { MovieDetails } from "../components/MovieDetails/MovieDetails";
 
-const Cast = lazy(() => import("./CastView" /* webpackChunkName: "cast" */));
+const Cast = lazy(() =>
+  import("../components/Cast/Cast" /* webpackChunkName: "cast" */)
+);
 const Reviews = lazy(() =>
-  import("./ReviewsView" /* webpackChunkName: "reviews" */)
+  import("../components/Reviews/Reviews" /* webpackChunkName: "reviews" */)
 );
 
 export default function MovieDetailsView() {
   const { movieId } = useParams();
-  const [movieDetails, setMovieDetails] = useState(null);
+  const [movieDetails, setMovieDetails] = useState({});
   // const history = useHistory();
   const location = useLocation();
   const { state } = location;
@@ -47,8 +50,8 @@ export default function MovieDetailsView() {
       >
         Back
       </Link>
-
-      <div className={styles.movieDetailsPage}>
+      <MovieDetails movieDetails={movieDetails} />
+      {/* <div className={styles.movieDetailsPage}>
         <img
           src={
             movieDetails.poster_path
@@ -87,7 +90,7 @@ export default function MovieDetailsView() {
             >{`Overview: ${movieDetails.overview}`}</span>
           </li>
         </ul>
-      </div>
+      </div> */}
 
       {movieDetails && (
         <ul>
