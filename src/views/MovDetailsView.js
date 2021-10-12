@@ -22,7 +22,7 @@ const Reviews = lazy(() =>
 
 export default function MovieDetailsView() {
   const { movieId } = useParams();
-  const [movieDetails, setMovieDetails] = useState([]);
+  const [movieDetails, setMovieDetails] = useState(null);
   // const history = useHistory();
   const location = useLocation();
   const { state } = location;
