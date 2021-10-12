@@ -1,22 +1,11 @@
 import PropTypes from "prop-types";
-// import { useHistory } from "react-router";
-// import { Link, useLocation } from "react-router-dom";
 import styles from "../../views/Styles.module.css";
 import Container from "../Container/Container";
 
 export function MovieDetails({ movieDetails }) {
-  //   const history = useHistory();
-
-  //   const goBack = () => {
-  //     history.push(location?.state?.from?.location ?? "/movies");
-  //   };
-
   return (
     <Container>
       <div className={styles.movieDetailsPage}>
-        {/* <button className={styles.btn} type="button" onClick={goBack}>
-          {location?.state?.from?.label ?? "Go back"}
-        </button> */}
         <img
           src={
             movieDetails.poster_path
@@ -58,3 +47,7 @@ export function MovieDetails({ movieDetails }) {
     </Container>
   );
 }
+
+MovieDetails.propTypes = {
+  movieDetails: PropTypes.object.isRequired,
+};
